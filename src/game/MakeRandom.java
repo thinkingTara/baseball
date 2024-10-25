@@ -6,41 +6,21 @@ import java.util.List;
 
 public class MakeRandom {
 
-    boolean flag = true;
-    int[] answerNums = new int[3];
+    ArrayList<Integer> genArr = new ArrayList<>();
 
-    int[] makeAnswer() {
-        // 동적 배열 makeNums생성
-        ArrayList<Integer> makeNums = new ArrayList<Integer>();
-
-        // 변수 makeNumber 랜덤값으로 생성 후 int로 변환
-        int makeNumber = (int) (Math.random() * 10);
-
-        // 만들어진 값이 0이 아닐 때 동적배열에 담기.  0이면 다시 랜덤생성
-        if (makeNumber != 0) {
-
-            // 중복확인. makeNums(동적배열)에 담겨있는 값과 makeNumber (랜덤생성으로 만든 값)을 비교
-            for (int i = 0; i < answerNums.length; i++) {
-                // 동적배열의 사이즈가 3보다 작을 때 동적배열에 값을 담음
-                if (makeNumber == answerNums[i]) {
-                    makeNumber = (int) (Math.random() * 10);
-                    i -= 1;
-                } else {
-                    if (makeNums.size() != 3) {
-                        answerNums[i] = makeNumber;
-                        makeNums.add(makeNumber);
-                        System.out.println("answerNums [" + i + "]" + answerNums[i]);
-                        makeNumber = (int) (Math.random() * 10);
-                    } else {
-                        break;
-                    }
-
-                }
+    ArrayList<Integer> generateNumber(){
+        // 동적배열.size() 3이 아닐 때 랜덤값을 담음
+        while( genArr.size() != 3) {
+            int genNum = (int)(Math.random() * 10);
+            // 랜덤생성한 수가 0이 아니고 동적배열이 랜덤수를 안 가지고 있을 때 동적배열에 담음
+            if( genNum != 0 && !genArr.contains(genNum)){
+                genArr.add(genNum);
             }
         }
-
-
-        return answerNums;
-
+        return genArr;
     }
+    // ArrayList 를 int[] 로 변환해야할까?
+
+
+
 }
